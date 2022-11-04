@@ -124,7 +124,7 @@
     <value>Articles</value>
   </data>
   <data name="Articles.LatestOne" xml:space="preserve">
-    <value>Latest article</value>
+    <value>Featured article</value>
   </data>
   <data name="Articles.More" xml:space="preserve">
     <value>More articles</value>

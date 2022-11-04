@@ -35,6 +35,8 @@ namespace DancingGoat
                     return await ResolveLink("Index", "Cafes");
                 case Home.Codename:
                     return await ResolveLink("Index", "Home");
+                case HomePage.Codename:
+                    return await ResolveLink("WebSpotlight", "Home");
                 default:
                     return urlHelper.Action("NotFound", "Errors");
             }

@@ -1,0 +1,103 @@
+﻿@model DancingGoat.Models.PageViewModel
+@{
+    ViewBag.Title = "Web Spotlight Page Example";
+}
+@{
+    var isCasualStyle = @Model.Tone.First().Codename == "casual" ? @Html.Raw("background-color:#B24143") : @Html.Raw("background-color:#E1E1E1");
+}
+@{var isFirst = true; }
+        
+    <h1 class="title-tab">Featured</h1>
+    <div class="row" style=@isCasualStyle
+            data-kontent-item-id=@Model.System.Id 
+            data-kontent-element-codename="content" 
+            data-kontent-add-button
+            data-kontent-item-id=@Model.System.Id
+            data-kontent-add-button-render-position="bottom"
+            data-kontent-add-button-insert-position="start"
+    >
+        @foreach (DancingGoat.Models.Coffee coffee in @Model.Coffees)
+        {
+        if (isFirst)
+        {
+            isFirst = false;
+            <div class="article-tile article-tile-large" data-kontent-item-id=@coffee.System.Id >
+                <div class="col-md-12 col-lg-6">
+                    <a asp-controller="Coffees" asp-action="Detail" asp-route-urlSlug="@coffee.UrlPattern">
+                        <img-asset asset="@coffee.Image.First()" class="article-tile-image" default-width="300">
+                            <media-condition min-width="1120" image-width="540" />
+                            <media-condition min-width="768" max-width="1120" image-width="736" />
+                            <media-condition min-width="330" max-width="768" image-width="468" />
+                        </img-asset>
+                    </a>
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    <div class="article-tile-content">
+                        <h2>
+                            <a asp-controller="Products" asp-action="Detail" asp-route-urlSlug="@coffee.UrlPattern">@coffee.ProductName</a>
+                        </h2>
+                        <p class="article-tile-text lead-paragraph">
+                            @Html.DisplayFor(vm => coffee.LongDescription)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            
+            <div class="col-md-12 col-lg-6" data-kontent-item-id=@coffee.System.Id>
+                <div class="article-tile-content" data>
+                    <h4>
+                        <a asp-controller="Coffees" asp-action="Show" asp-route-urlSlug="@coffee.UrlPattern">@coffee.ProductName</a>
+                    </h4>
+                    <img-asset asset="@coffee.Image.First()" class="article-tile-image" default-width="300">
+                        <media-condition min-width="1120" image-width="540" />
+                        <media-condition min-width="768" max-width="1120" image-width="736" />
+                        <media-condition min-width="330" max-width="768" image-width="468" />
+                    </img-asset>
+                    <p class="article-tile-text">
+                        @Html.DisplayFor(vm => coffee.ShortDescription)
+                    </p>
+                </div>
+            </div>
+        }
+        }
+    </div>
+    <div class="row" style=@isCasualStyle>
+    @foreach (DancingGoat.Models.Article article in @Model.Articles)
+    {
+        if (isFirst)
+        {
+            isFirst = false;
+            <div class="article-tile article-tile-large" data-kontent-item-id=@article.System.Id >
+                <div class="col-md-12 col-lg-6">
+                    <a asp-controller="Articles" asp-action="Show" asp-route-urlSlug="@article.UrlPattern">
+                        <img-asset asset="@article.TeaserImage.First()" class="article-tile-image" default-width="300">
+                            <media-condition min-width="1120" image-width="540" />
+                            <media-condition min-width="768" max-width="1120" image-width="736" />
+                            <media-condition min-width="330" max-width="768" image-width="468" />
+                        </img-asset>
+                    </a>
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    <div class="article-tile-date">
+                        @article.PostDate?.ToString("M")
+                    </div>
+                    <div class="article-tile-content">
+                        <h2>
+                            <a asp-controller="Articles" asp-action="Show" asp-route-urlSlug="@article.UrlPattern">@article.Title</a>
+                        </h2>
+                        <p class="article-tile-text lead-paragraph">
+                            @Html.DisplayFor(vm => article.Summary)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            @Html.DisplayFor(vm => article)
+        }
+    }
+    </div>

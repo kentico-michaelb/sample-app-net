@@ -24,10 +24,18 @@ namespace DancingGoat.Controllers
         
         public async Task<ActionResult> Index()
         {
+            var globalRegion = "global";
+            var localRegion = "north_america";
+            if(Language == "es-ES")
+            {
+                localRegion = "europe";
+            }
             var response = await _client.GetItemsAsync<Article>(
                 new OrderParameter("elements.post_date", SortOrder.Descending),
                 new ElementsParameter(Article.TeaserImageCodename, Article.PostDateCodename, Article.SummaryCodename, Article.UrlPatternCodename, Article.TitleCodename),
-                new LanguageParameter(Language)
+                new LanguageParameter(Language),
+                new EqualsFilter("system.language", Language),
+                new AnyFilter("elements.region", globalRegion, localRegion)
             );
 
             return View(response.Items);

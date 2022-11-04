@@ -1,7 +1,7 @@
 ﻿@model DancingGoat.Models.Article
 
 <div class="col-md-3">
-    <div class="article-tile">
+    <div class="article-tile" data-kontent-item-id=@Model.System.Id>
         <a asp-controller="Articles" asp-action="Show" asp-route-urlSlug="@Model.UrlPattern">
             <img-asset asset="@Model.TeaserImage.First()" class="article-tile-image" default-width="300" title="Article @Model.Title">
                 <media-condition min-width="330" max-width="768" image-width="468" />
