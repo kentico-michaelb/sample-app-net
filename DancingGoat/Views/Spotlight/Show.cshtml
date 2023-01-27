@@ -1,8 +1,5 @@
 ﻿@model DancingGoat.Models.PageViewModel
 @{
-    ViewBag.Title = "Web Spotlight Page Example";
-}
-@{
     var isCasualStyle = @Model.Tone.First().Codename == "casual" ? @Html.Raw("background-color:#B24143") : @Html.Raw("background-color:#E1E1E1");
 }
 @{var isFirst = true; }
@@ -16,7 +13,7 @@
             data-kontent-add-button-render-position="bottom"
             data-kontent-add-button-insert-position="start"
     >
-        @foreach (DancingGoat.Models.Coffee coffee in @Model.Coffees)
+        @foreach (DancingGoat.Models.Coffee coffee in Model.Coffees)
         {
         if (isFirst)
         {
@@ -100,4 +97,8 @@
             @Html.DisplayFor(vm => article)
         }
     }
-    </div>
+    @foreach (KontentAiModels.CallToAction cta in Model.CTAs)
+    {
+        @Html.DisplayFor(vm => cta, "CTA")
+    }
+</div>

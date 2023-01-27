@@ -10,8 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Kontent.Ai.Delivery.Abstractions;
+using DancingGoat.Models;
 
-namespace DancingGoat.Models
+namespace KontentAiModels
 {
     public class CustomTypeProvider : ITypeProvider
     {
@@ -22,13 +23,18 @@ namespace DancingGoat.Models
             {typeof(Article), "article"},
             {typeof(Brewer), "brewer"},
             {typeof(Cafe), "cafe"},
+            {typeof(CallToAction), "call_to_action"},
+            {typeof(Chunk), "chunk"},
             {typeof(Coffee), "coffee"},
             {typeof(FactAboutUs), "fact_about_us"},
             {typeof(Grinder), "grinder"},
             {typeof(HeroUnit), "hero_unit"},
             {typeof(Home), "home"},
+            {typeof(HomePage), "homepage"},
             {typeof(HostedVideo), "hosted_video"},
+            {typeof(Link), "link"},
             {typeof(Office), "office"},
+            {typeof(Page), "page"},
             {typeof(Tweet), "tweet"}
         };
 

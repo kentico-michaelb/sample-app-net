@@ -1,0 +1,11 @@
+﻿@model KontentAiModels.Link
+
+@{ 
+    var link_type = @Model.LinkType.First().Codename;
+    if (link_type == "external") {
+        <a href=@Model.ExternalUrl>@Model.Label</a>
+    }
+    else if (link_type == "internal") {
+       @Html.ActionLink(@Model.Label, "Show", "Spotlight",new { id = @Model.InternalLink.First().Url})
+    }
+}

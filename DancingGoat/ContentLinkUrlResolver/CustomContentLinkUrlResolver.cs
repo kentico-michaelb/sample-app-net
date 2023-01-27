@@ -1,5 +1,6 @@
 ﻿using DancingGoat.Models;
 using Kontent.Ai.Delivery.Abstractions;
+using KontentAiModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
@@ -37,6 +38,9 @@ namespace DancingGoat
                     return await ResolveLink("Index", "Home");
                 case HomePage.Codename:
                     return await ResolveLink("WebSpotlight", "Home");
+                case Link.Codename:
+                    //Requires additional logic for link resolution
+                    return await ResolveLink("Detail", "Product", new { urlSlug = link.UrlSlug }); ;
                 default:
                     return urlHelper.Action("NotFound", "Errors");
             }

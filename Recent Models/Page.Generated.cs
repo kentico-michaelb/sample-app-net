@@ -10,23 +10,24 @@ using System;
 using System.Collections.Generic;
 using Kontent.Ai.Delivery.Abstractions;
 
-namespace DancingGoat.Models
+namespace KontentAiModels
 {
     public partial class Page
     {
         public const string Codename = "page";
         public const string ContentCodename = "content";
+        public const string ShowInNavigationCodename = "show_in_navigation";
         public const string SubpagesCodename = "subpages";
         public const string TitleCodename = "title";
-        public const string UrlCodename = "url";
         public const string ToneCodename = "tone";
+        public const string UrlCodename = "url";
 
-        public string Title { get; set; }
         public IEnumerable<object> Content { get; set; }
+        public IEnumerable<IMultipleChoiceOption> ShowInNavigation { get; set; }
         public IEnumerable<object> Subpages { get; set; }
         public IContentItemSystemAttributes System { get; set; }
+        public string Title { get; set; }
         public IEnumerable<ITaxonomyTerm> Tone { get; set; }
         public string Url { get; set; }
-
     }
 }

@@ -22,6 +22,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using static DancingGoat.Configuration.Constants;
+using KontentAiModels;
 
 namespace DancingGoat
 {
@@ -111,6 +112,7 @@ namespace DancingGoat
             {
                 //endpoints.MapDynamicControllerRoute<CustomLocalizedRoutingTranslationTransformer>("{culture=en-US}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute("default", "{culture=en-US}/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("spotlight", "{culture=en-US}/{controller=Spotlight}/{action=Show}/{id}");
                 endpoints.MapControllerRoute("areas", "{area:exists}/{controller=Home}/{action=Index}/{id?}"
                 );
             });

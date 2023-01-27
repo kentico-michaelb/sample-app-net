@@ -1,0 +1,32 @@
+﻿@model KontentAiModels.CallToAction
+@{
+    var link_type = @Model.Target.First().LinkType.First().Codename;
+}
+
+<div class="col-lg-3 col-md-6 col-sm-12">
+    <div class="article-tile">
+        <div class="article-tile-content">
+            <h2 class="h4">
+                @Html.DisplayFor(vm => vm.Text)
+            </h2>
+            <p class="article-tile-text">
+            @if(@link_type.Equals("external")){
+
+                <a href=@Model.Target.First().ExternalUrl target="_blank">
+                    @Html.DisplayFor(vm => vm.Target.First().Label)
+                </a>
+                
+            }
+
+            else if(@link_type.Equals("internal")){
+                @*How do we NOT hardcode the controller and action?*@
+               @Html.ActionLink(@Model.Text, "Show", "Spotlight", new { id = @Model.Target.First().InternalLink.First().Url})
+            }
+
+            else {
+                <div>Link type not set</div>
+            }
+            </p>
+        </div>
+    </div>
+</div>
