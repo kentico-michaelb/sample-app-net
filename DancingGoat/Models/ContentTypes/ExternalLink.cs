@@ -7,7 +7,7 @@
 
 namespace KontentAiModels
 {
-    public partial class Link
+    public partial class ExternalLink
     {
     }
 }

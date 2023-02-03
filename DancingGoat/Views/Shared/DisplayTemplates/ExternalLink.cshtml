@@ -1,0 +1,6 @@
+﻿@model KontentAiModels.ExternalLink
+
+@{ 
+    var target = Model.OpenInNewTab.First().Codename == "yes" ? "_blank" : "_self";
+    <a href=@Model.AbsoluteUrl target=@target>@Model.Label</a>
+}

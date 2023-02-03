@@ -45,7 +45,7 @@ namespace DancingGoat.Controllers
         {
             var response = await _client.GetItemsAsync<Article>(
                 new EqualsFilter($"elements.{Article.UrlPatternCodename}", urlSlug),
-                new DepthParameter(1),
+                new DepthParameter(3),
                 new LanguageParameter(Language)
             );
 

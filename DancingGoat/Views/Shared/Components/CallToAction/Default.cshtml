@@ -1,0 +1,18 @@
+﻿@using DancingGoat.Models;
+@using KontentAiModels;
+@model KontentAiModels.CallToAction;
+@{
+    var link = @Model.Target.First();
+
+}
+
+    <div class="article-tile-content">
+        <div class="article-tile">
+            <div class="article-tile-content">
+                <div style="background-color:#E1E1E1">
+                <h2 class="h4">@Model.Text</h2>
+                    @Html.DisplayFor(m => m.Target)
+                </div>
+            </div>
+        </div>
+    </div>

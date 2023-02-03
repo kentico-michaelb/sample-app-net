@@ -12,14 +12,16 @@ using Kontent.Ai.Delivery.Abstractions;
 
 namespace KontentAiModels
 {
-    public partial class CallToAction
+    public partial class ExternalLink
     {
-        public const string Codename = "call_to_action";
-        public const string TargetCodename = "target";
-        public const string TextCodename = "text";
+        public const string Codename = "external_link";
+        public const string AbsoluteUrlCodename = "absolute_url";
+        public const string OpenInNewTabCodename = "open_in_new_tab_";
+        public const string PersonasCodename = "personas";
 
+        public string AbsoluteUrl { get; set; }
+        public IEnumerable<IMultipleChoiceOption> OpenInNewTab { get; set; }
+        public IEnumerable<ITaxonomyTerm> Personas { get; set; }
         public IContentItemSystemAttributes System { get; set; }
-        public IEnumerable<object> Target { get; set; }
-        public string Text { get; set; }
     }
 }

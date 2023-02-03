@@ -33,21 +33,37 @@ namespace DancingGoat.Controllers
 
             foreach(var item in page.Content)
             {
-               
+
                 if (item is Coffee)
                 {
                     var coffee = item as Coffee;
                     coffees.Add(coffee);
                 }
+
+                //Logic for internal vs. external CTA links
                 else if (item is CallToAction)
                 {
                     var cta = item as CallToAction;
-                    // Add internal/external logic here??
+
+                    //https://github.com/kontent-ai/delivery-sdk-net/blob/master/docs/customization-and-extensibility/strongly-typed-models.md#adding-support-for-runtime-type-resolution
+                    var link_type = cta.Target.First().GetType();
+
+                    if (link_type.Name == "InternalLink")
+                    {
+                        cta.Target.Cast<InternalLink>();
+                    }
+                    else
+                    {
+                        cta.Target.Cast<ExternalLink>();
+                    }
+
                     ctas.Add(cta);
                 }
+
                 else
                 {
-
+                    var article = item as Article;
+                    articles.Add(article);
                 }
             }
 

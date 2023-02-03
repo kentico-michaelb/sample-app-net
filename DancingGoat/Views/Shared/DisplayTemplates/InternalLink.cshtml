@@ -1,0 +1,18 @@
+﻿@model KontentAiModels.InternalLink
+
+@{
+    object link = null;
+    var item = @Model.Target.First();
+    if (@item.GetType().Name == "Page")
+    {
+        Page page = (Page)item;
+        link = @Html.ActionLink(@Model.Label, "Show", "Spotlight", new { id = page.Url });
+    }
+    else if(@item.GetType().Name == "Article")
+    {
+        Article page = (Article)item;
+        link = @Html.ActionLink(@Model.Label, "Show", "Articles", new { urlSlug = page.UrlPattern });
+    }
+
+    <div>@link</div>
+}

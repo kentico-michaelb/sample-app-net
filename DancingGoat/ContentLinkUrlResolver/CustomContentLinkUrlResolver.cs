@@ -40,7 +40,10 @@ namespace DancingGoat
                     return await ResolveLink("WebSpotlight", "Home");
                 case Link.Codename:
                     //Requires additional logic for link resolution
-                    return await ResolveLink("Detail", "Product", new { urlSlug = link.UrlSlug }); ;
+                    return await ResolveLink("Detail", "Product", new { urlSlug = link.UrlSlug });
+                case InternalLink.Codename:
+                    //Requires additional logic for link resolution
+                    return await ResolveLink("Show", "Spotlight", new { urlSlug = link.UrlSlug });
                 default:
                     return urlHelper.Action("NotFound", "Errors");
             }

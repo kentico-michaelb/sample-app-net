@@ -8,7 +8,6 @@
 
 using System;
 using System.Collections.Generic;
-using DancingGoat.Models;
 using Kontent.Ai.Delivery.Abstractions;
 
 namespace KontentAiModels
@@ -26,7 +25,7 @@ namespace KontentAiModels
         public string AnchorLink { get; set; }
         public string ExternalUrl { get; set; }
         public IEnumerable<IAsset> Icon { get; set; }
-        public IEnumerable<Page> InternalLink { get; set; }
+        public IEnumerable<object> InternalLink { get; set; }
         public string Label { get; set; }
         public IEnumerable<ITaxonomyTerm> LinkType { get; set; }
         public IContentItemSystemAttributes System { get; set; }

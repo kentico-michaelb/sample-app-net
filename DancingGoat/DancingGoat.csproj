@@ -29,6 +29,7 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Views\SelfConfig\" />
     <Folder Include="Areas\Admin\Views\Shared\EditorTemplates\" />
+    <Folder Include="Tools\" />
     <Folder Include="wwwroot\images\Admin\" />
   </ItemGroup>
 

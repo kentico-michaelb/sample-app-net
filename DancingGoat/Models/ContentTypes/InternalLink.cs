@@ -7,7 +7,8 @@
 
 namespace KontentAiModels
 {
-    public partial class Link
+    public partial class InternalLink
     {
+        public string InternalUrl {get; set;}
     }
 }
