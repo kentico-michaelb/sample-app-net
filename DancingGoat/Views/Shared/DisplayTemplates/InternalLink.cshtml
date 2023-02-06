@@ -3,15 +3,24 @@
 @{
     object link = null;
     var item = @Model.Target.First();
-    if (@item.GetType().Name == "Page")
+
+    switch (@item.GetType().Name)
     {
-        Page page = (Page)item;
-        link = @Html.ActionLink(@Model.Label, "Show", "Spotlight", new { id = page.Url });
-    }
-    else if(@item.GetType().Name == "Article")
-    {
-        Article page = (Article)item;
-        link = @Html.ActionLink(@Model.Label, "Show", "Articles", new { urlSlug = page.UrlPattern });
+        case "Page":
+            Page page = (Page)item;
+            link = @Html.ActionLink(@Model.Label, "Show", "Spotlight", new { id = page.Url });
+            break;
+        case "Article":
+            Article article = (Article)item;
+            link = @Html.ActionLink(@Model.Label, "Show", "Articles", new { urlSlug = article.UrlPattern });
+            break;
+        case "Coffee":
+            Coffee coffee = (Coffee)item;
+            link = @Html.ActionLink(@Model.Label, "Detail", "Product", new { urlSlug = coffee.UrlPattern });
+            break;
+        default:
+            link = @Html.ActionLink(@Model.Label, "NotFound", "Errors");
+            break;
     }
 
     <div>@link</div>
