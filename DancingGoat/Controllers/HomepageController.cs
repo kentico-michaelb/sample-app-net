@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Kontent.Ai.Delivery.Abstractions;
 using Kontent.Ai.Urls.Delivery.QueryParameters;
 using System.Collections.Generic;
+using KontentAiModels;
 
 namespace DancingGoat.Controllers
 {
@@ -21,6 +22,7 @@ namespace DancingGoat.Controllers
 
             var coffees = new List<Coffee>();
             var articles = new List<Article>();
+            var ctas = new List<CallToAction>();
 
             foreach(var item in response.Item.Content)
             {
@@ -30,37 +32,23 @@ namespace DancingGoat.Controllers
                     var coffee = item as Coffee;
                     coffees.Add(coffee);
                 }
-                else
+                else if (item is CallToAction)
                 {
-                    var article = item as Article;
-                    articles.Add(article);
-                }
-            }
+                    var cta = item as CallToAction;
 
-            var viewModel = new HomePageViewModel
-            {
-                Articles = articles,
-                Header = response.Item.HeroUnit.Cast<HeroUnit>().FirstOrDefault(x => x.System.Codename == "home_page_hero_unit"),
-                Coffees = coffees
-            };
+                    //https://github.com/kontent-ai/delivery-sdk-net/blob/master/docs/customization-and-extensibility/strongly-typed-models.md#adding-support-for-runtime-type-resolution
+                    var link_type = cta.Target.First().GetType();
 
-            return View(viewModel);
-        }
+                    if (link_type.Name == "InternalLink")
+                    {
+                        cta.Target.Cast<InternalLink>();
+                    }
+                    else
+                    {
+                        cta.Target.Cast<ExternalLink>();
+                    }
 
-        public async Task<ActionResult> Spotlight()
-        {
-            var response = await _client.GetItemAsync<HomePage>("homepage", new LanguageParameter(Language), new DepthParameter(3));
-
-            var coffees = new List<Coffee>();
-            var articles = new List<Article>();
-
-            foreach (var item in response.Item.Content)
-            {
-
-                if (item is Coffee)
-                {
-                    var coffee = item as Coffee;
-                    coffees.Add(coffee);
+                    ctas.Add(cta);
                 }
                 else
                 {
@@ -73,7 +61,8 @@ namespace DancingGoat.Controllers
             {
                 Articles = articles,
                 Header = response.Item.HeroUnit.Cast<HeroUnit>().FirstOrDefault(x => x.System.Codename == "home_page_hero_unit"),
-                Coffees = coffees
+                Coffees = coffees,
+                CTAs = ctas
             };
 
             return View(viewModel);

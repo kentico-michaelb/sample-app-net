@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using KontentAiModels;
+using System.Collections.Generic;
 
 namespace DancingGoat.Models
 {
@@ -9,5 +10,6 @@ namespace DancingGoat.Models
         public HeroUnit Header { get; set; }
 
         public IEnumerable<Coffee> Coffees { get; set; }
+        public IEnumerable<CallToAction> CTAs { get; set; }
     }
 }

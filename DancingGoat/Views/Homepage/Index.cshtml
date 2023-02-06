@@ -75,3 +75,7 @@
         </div>
         }
     </div>
+    @foreach (KontentAiModels.CallToAction cta in Model.CTAs)
+    {
+        @Html.DisplayFor(vm => cta, "CTA")
+    }
